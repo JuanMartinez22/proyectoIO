@@ -2,11 +2,15 @@
 
 .box
 {
-    position: fixed;
-    width: 1300px;
+    position: relative;
+    /* width: 1300px;
     height: 750px;
     bottom: 50px;
-    right: 100px;
+    right: 100px; */
+    left: 28.5%;
+    top: 15vh;
+    width: 70%;
+    height: 70vh;
     background: #1c1c1c;
     border-radius: 50px 50px;
     overflow: hidden;
