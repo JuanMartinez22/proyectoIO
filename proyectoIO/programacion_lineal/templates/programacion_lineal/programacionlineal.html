@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<hmtml>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Programacion Lineal</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/menulat.css' %}">
+        <link rel="stylesheet" href="{% static 'css/table.css' %}">
+        <script src="{% static 'js/dinamico.js' %}"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+            <div class="btn-menu">
+                <label for="btn-menu">☰</label>
+            </div>
+                <div class="logo">
+                    <h1>Cementera</h1>
+                </div>
+                <nav class="menu">
+                    <a href="">Inicio</a>
+                    <a href="">Mision y Vision</a>
+                    <a href="">Sobre Nosotros</a>
+                </nav>
+            </div>
+        </header>
+        <div class="capa"></div>
+        
+        <input type="checkbox" id="btn-menu">
+        <div class="container-menu">
+            <div class="cont-menu">
+                <nav>
+                    <a href="">Programacion Lineal</a>
+                    <a href="">Redes</a>
+                    <a href="">Manuales de Uso</a>
+                </nav>
+                <label for="btn-menu">✖️</label>
+            </div>
+        </div>
+        <div class="box">
+            <form method="post">
+                {% csrf_token %}
+                <h2>Programacion</h2>
+                <label>Optimizacion de tramos:</label>
+                <div class="inputBox">
+                    <label>Cantidad de kilometros a abarcar: </label>
+                    <input type="text" name="cantkm" required>
+                    <i></i>
+                </div>
+                <br>
+                <div class="inputBox">
+                    <label>Cantidad de km minimos de tramos rectos: </label>
+                    <input type="text" name="kmTR" required>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <label>Cantidad de km maximos de curvas suaves:</label>
+                    <input type="text" name="kmCS" required>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <label>Cantidad de km maximos de curvas pronunciadas: </label>
+                    <input type="text" name="kmCP" required>
+                    <i></i>
+                </div>
+
+                <input type="submit" value="Calcular">
+
+                <div class="inputBox">
+                    <label>Resultados:</label><br>
+                    <label>{{r1}} kms de curvas suaves</label><br>
+                    <label>{{r2}} kms de curvas pronunciadas</label><br>
+                    <label>{{r3}} kms de tramos rectos</label><br>
+                </div>
+                <br>
+                <br>
+                <label>Seleccione materiales a usar:</label><br>
+                <label>Sub-base</label>
+                <select name="subbase">
+                    <option value="sbnada"></option>
+                    <option value="sbcomun">Sub-base comun </option>
+                    <option value="sbgranular">Sub-base granular</option>
+                    <option value="sbtriturada">Sub-base de grava o piedra triturada</option>
+                    <option value="sbintegrante">Sub-base integrante de un pavimento</option>
+                </select>
+                <br>
+                <select name="subbasemat">
+                {% if subbase == 'Sub-base comun' %}
+                    <option value="bnada"></option>
+                    <option value="bnada">aaaaaa</option>
+                    <option value="bnada">bbbbb</option> 	
+                {% elif subbase == 'Sub-base granular' %}
+                    <option value="bnada"></option>
+                    <option value="bnada">cccccc</option>
+                    <option value="bnada">dddddd</option>
+                {% else %}
+                    <option value="bnada"></option>
+                </select>
+                {% endif %} 	
+                <br>
+                <label>Base</label>    
+                <select name="base">
+                    <option value="bnada"></option>
+                    <option value="bgranular">Base granular</option>
+                    <option value="btriturada">Base de grava o piedra trituradas</option>
+                    <option value="bcemento">Capa de base de suelo cemento</option>
+                    <option value="bnegra">Capa de base negra</option>
+                </select>
+                <br>
+                <label>Rodadura</label>
+                <select name="rodadura">
+                    <option value="rnad a"></option>
+                    <option value="AC-2.5">AC-2.5</option>
+                    <option value="AC-5">AC-5</option>
+                </select>
+                </form>
+        <br>
+        <br>
+        <br>     
+    </div>
+    </body>
+</hmtml>

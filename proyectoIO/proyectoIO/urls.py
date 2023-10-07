@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from programacion_lineal.views import Programacion
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('programacion/', Programacion, name='Programacion Lineal')
 ]
