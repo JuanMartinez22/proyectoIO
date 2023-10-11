@@ -8,7 +8,6 @@
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/menulat.css' %}">
         <link rel="stylesheet" href="{% static 'css/table.css' %}">
-        <script src="{% static 'js/dinamico.js' %}"></script>
     </head>
     <body>
         <header class="header">
@@ -42,83 +41,153 @@
         <div class="box">
             <form method="post">
                 {% csrf_token %}
-                <h2>Programacion</h2>
-                <label>Optimizacion de tramos:</label>
-                <div class="inputBox">
-                    <label>Cantidad de kilometros a abarcar: </label>
-                    <input type="text" name="cantkm" required>
-                    <i></i>
-                </div>
-                <br>
-                <div class="inputBox">
-                    <label>Cantidad de km minimos de tramos rectos: </label>
-                    <input type="text" name="kmTR" required>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <label>Cantidad de km maximos de curvas suaves:</label>
-                    <input type="text" name="kmCS" required>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <label>Cantidad de km maximos de curvas pronunciadas: </label>
-                    <input type="text" name="kmCP" required>
-                    <i></i>
-                </div>
+                <table>
+                <tr><th><br></th></tr>
+                <tr><th><br></th></tr>
+                <tr>
+                    <th colspan="2" style="position: relative; left: -25%; color: #f4f4f4;"><h3>Optimizacion de tramos:</h3></th>
+                </tr>
+                <tr><th><br></th></tr>
+                <tr>
+                    <th style="position: relative; left: 5%; color: #fefefe;">
+                        Cantidad de kilometros a abarcar:
+                    </th>
+                    <th>
+                        <input type="number" name="cantkm" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
+                    </th>
+                </tr>
+                <tr><th><br></th></tr>
+                <tr>
+                    <th style="position: relative; left: 1.5%; color: #fefefe;">
+                        Kms minimos de tramo recto:
+                    </th>
+                    <th>
+                        <input type="number" name="kmTR" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="position: relative; left: 2%; color: #fefefe;">
+                        Kms maximos de curva suave:
+                    </th>
+                    <th>
+                        <input type="number" name="kmCS" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="position: relative; left: 7.5%; color: #fefefe;">
+                        Kms maximos de curva pronunciada:
+                    </th>
+                    <th>
+                        <input type="number" name="kmCP" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
+                    </th>
+                </tr>
+                <tr><th><br></th></tr>
+                <tr>
+                    <th></th>
+                    <th colspan="2">
+                        <h3><label style="position: relative; left: -150%; color: #fefefe;">Resultados:</label></h3><br>
+                        <label style="position: relative; left: -100%; color: #fefefe;">{{r1}} kms de curvas suaves</label><br>
+                        <label style="position: relative; left: -100%; color: #fefefe;">{{r2}} kms de curvas pronunciadas</label><br>
+                        <label style="position: relative; left: -100%; color: #fefefe;">{{r3}} kms de tramos rectos</label><br>
+                    </th>
+                </tr>
+                <tr><th><br></th></tr>
+                </table>
 
-                <input type="submit" value="Calcular">
+                <br>
+                
+                <table>
+                <tr><th colspan="3" style="position: relative; left: -23%; color: #f4f4f4;"><h3>Ingrese materiales a usar:</h3></th></tr>
+                <tr><th><br></th></tr>
+                <!-- Material    Distruibidor    precio    Cantidad -->
+                <tr>
+                    <th style="position: relative; left: 0%; color: #fefefe;">Material</th>
+                    <th style="position: relative; left: 0%; color: #fefefe;">Distruibidor y precio</th>
+                    <th style="position: relative; left: 0%; color: #fefefe;">Cantidad/km</th>
+                </tr>
 
-                <div class="inputBox">
-                    <label>Resultados:</label><br>
-                    <label>{{r1}} kms de curvas suaves</label><br>
-                    <label>{{r2}} kms de curvas pronunciadas</label><br>
-                    <label>{{r3}} kms de tramos rectos</label><br>
-                </div>
-                <br>
-                <br>
-                <label>Seleccione materiales a usar:</label><br>
-                <label>Sub-base</label>
-                <select name="subbase">
-                    <option value="sbnada"></option>
-                    <option value="sbcomun">Sub-base comun </option>
-                    <option value="sbgranular">Sub-base granular</option>
-                    <option value="sbtriturada">Sub-base de grava o piedra triturada</option>
-                    <option value="sbintegrante">Sub-base integrante de un pavimento</option>
-                </select>
-                <br>
-                <select name="subbasemat">
-                {% if subbase == 'Sub-base comun' %}
-                    <option value="bnada"></option>
-                    <option value="bnada">aaaaaa</option>
-                    <option value="bnada">bbbbb</option> 	
-                {% elif subbase == 'Sub-base granular' %}
-                    <option value="bnada"></option>
-                    <option value="bnada">cccccc</option>
-                    <option value="bnada">dddddd</option>
-                {% else %}
-                    <option value="bnada"></option>
-                </select>
-                {% endif %} 	
-                <br>
-                <label>Base</label>    
-                <select name="base">
-                    <option value="bnada"></option>
-                    <option value="bgranular">Base granular</option>
-                    <option value="btriturada">Base de grava o piedra trituradas</option>
-                    <option value="bcemento">Capa de base de suelo cemento</option>
-                    <option value="bnegra">Capa de base negra</option>
-                </select>
-                <br>
-                <label>Rodadura</label>
-                <select name="rodadura">
-                    <option value="rnad a"></option>
-                    <option value="AC-2.5">AC-2.5</option>
-                    <option value="AC-5">AC-5</option>
-                </select>
-                </form>
-        <br>
-        <br>
-        <br>     
+                <tr>
+                    <th style="position: relative; left: 0%; color: #fefefe;">Piedra</th>
+                    <th>
+                        <select name="piedra" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                            <option value="a1"></option>
+                            <option value="a2">Piedrin 1/2 comercial Guadalupe (Antigua)</option>
+                            <option value="a3">Piedrin 1/2 comercial Guadalupe (Chimaltenango)</option>
+                            <option value="a4">Piedrin 1/2 comercial Guadalupe (Escuintla)</option>
+                            <option value="a5">Piedrin negro</option>
+                            <option value="a6">Piedrin negro (Huehetenango)</option>
+                            <option value="a7">Piedrin negro 3/4 (Retalhuleu)</option>
+                            <option value="a8">Piedrin 1/2 comercio Sol</option>
+                        </select>
+                    </th>
+                    <th><input type="number" name="cantpiedra" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                </tr>
+                
+                <tr>
+                    <th style="position: relative; left: 0%; color: #fefefe;">Arena</th>
+                    <th>
+                        <select name="arena" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                            <option value="b1"></option>
+                            <option value="b2">Arena Rio corriente</option>
+                            <option value="b3">Arena Rio Guadalupe(Antigua)</option>
+                            <option value="b4">Arena Rio Guadalupe(Chimaltenago)</option>
+                            <option value="b5">Arena Rio Guadalupe(Santa Lucia)</option>
+                            <option value="b6">Arena Rio Guadalupe(San Lucas)</option>
+                            <option value="b7">Arena Rio triturada</option>
+                        </select>
+                    </th>
+                    <th><input type="number" name="cantarena" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                </tr>
+                
+                <tr>
+                    <th style="position: relative; left: 0%; color: #fefefe;">Cemento</th>
+                    <th>
+                        <select name="cemento" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                            <option value="c1"></option>
+                            <option value="c2">Cemento Cantera progreso 42.5KG</option>
+                            <option value="c3">Cemento UGC 42.5KG</option>
+                            <option value="c4">Cemento Monocapa Blanco 40KG</option>
+                            <option value="c5">Cemento Monocapa Gris 40KG</option>
+                            <option value="c6">Cemento asfaltico chova</option>
+                            <option value="c7">Cemento asfáltico Black Jack</option>
+                        </select>
+                    </th>
+                    <th><input type="number" name="cantcemento" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                </tr>
+                
+                <tr>
+                    <th style="position: relative; left: 0%; color: #fefefe;">Concreto</th>
+                    <th>
+                        <select name="concreto" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                            <option value="d1"></option>
+                            <option value="d2">Concreto 3001 PSI 3/8 50KG</option>
+                            <option value="d3">Concreto 3002 PSI 1/2 50KG</option>
+                        </select>
+                    </th>
+                    <th><input type="number" name="cantconcreto" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                </tr>
+                
+                <tr>
+                    <th style="position: relative; left: 0%; color: #fefefe;">M. bituminoso</th>
+                    <th>
+                        <select name="bituminoso" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                            <option value="e1"></option>
+                            <option value="e2">AC-2.5</option>
+                            <option value="e3">AC-5</option>
+                        </select>
+                    </th>
+                    <th><input type="number" name="cantbitumen" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                </tr>
+                <tr><th><br></th></tr>
+                <tr><th><br></th></tr>
+                <tr>
+                    <th></th>
+                    <th><input type="submit" value="Generar reporte" style="height:50px; width:200px;border-radius: 10px 10px 10px 10px; background-color:#251313;color: #fefefe;"></th>
+                    <th></th>
+                </tr>
+                <label>material: {{tipo}} aaaaaa </label><br>
+                <label>total: {{preciotot}} bbbb </label>
+            </table>
     </div>
     </body>
 </hmtml>
