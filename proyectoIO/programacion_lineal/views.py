@@ -448,3 +448,10 @@ def imprimirReporte(mpiedra,pupiedra,cpiedra,ptotal,marena,puarena,carena,atotal
     cadena = "|{:<45}|{:<15}|{:<15}|{:<16}|".format(mbitumen,pubitumen,cbitumen,btotal)
     file.write(f"{cadena}\n")
     file.write("+---------------------------------------------+---------------+---------------+----------------+\n")
+
+
+def MyV(request):
+    return render(request, "programacion_lineal/misionvision.html")
+
+def SN(request):
+    return render(request, "programacion_lineal/Sobrenosotros.html")
