@@ -455,3 +455,4 @@ def MyV(request):
 
 def SN(request):
     return render(request, "programacion_lineal/Sobrenosotros.html")
+
