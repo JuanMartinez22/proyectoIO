@@ -1,53 +1,113 @@
 <!DOCTYPE html>
-<hmtml>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Programacion Lineal</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'css/menulat.css' %}">
-        <link rel="stylesheet" href="{% static 'css/table.css' %}">
-    </head>
-    <body>
-        <header class="header">
-            <div class="container">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Programacion Lineal</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/menulat.css' %}">
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    
+    <!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .menu-item {
+            position: relative;
+            padding: 10px;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 9999;
+            top: 100%; /* Posiciona el popup debajo del elemento del menú */
+            left: 0; /* Alinea con el borde izquierdo del menú */
+        }
+
+        .menu-item:hover .popup {
+            display: block;
+        }
+
+        .menu-item:hover .menu-link {
+            background-color: #ccc;
+        }
+
+        .menu-link:hover {
+            background-color: #ccc;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu-link-inicio {
+            background-color: inherit;
+        }
+
+        .menu-item-sobre-nosotros {
+            margin-left: 20px;
+        }
+
+        .popup h2 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .popup p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
             <div class="btn-menu">
                 <label for="btn-menu">☰</label>
             </div>
-                <div class="logo">
-                    <h1>Cementera</h1>
+            <div class="logo">
+                <h1>Cementera</h1>
+            </div>
+            <nav class="menu">
+                <div class="menu-item">
+                    <a href="programacionlineal.html" title="Haz clic aquí para conocer nuestra misión y visión" class="menu-link-inicio">Inicio</a>
                 </div>
-                <nav class="menu">
-                    <a href="">Inicio</a>
-                    <a href="">Mision y Vision</a>
-                    <a href="">Sobre Nosotros</a>
-                </nav>
-            </div>
-        </header>
-        <div class="capa"></div>
-        
-        <input type="checkbox" id="btn-menu">
-        <div class="container-menu">
-            <div class="cont-menu">
-                <nav>
-                    <a href="">Programacion Lineal</a>
-                    <a href="">Redes</a>
-                    <a href="">Manuales de Uso</a>
-                </nav>
-                <label for="btn-menu">✖️</label>
-            </div>
+                <div class="menu-item">
+                    <a href="{% url 'Misionvision' %}" title="Haz clic aquí para conocer nuestra misión y visión" class="menu-link">Misión y Visión</a>
+                </div>
+                <div class="menu-item menu-item-sobre-nosotros">
+                    <a href="{% url 'Sobrenosotros' %}" class="menu-link">Sobre Nosotros</a>
+                </div>
+            </nav>
         </div>
-        <div class="box">
-            <form method="post">
-                {% csrf_token %}
-                <table>
-                <tr><th><br></th></tr>
-                <tr><th><br></th></tr>
+    </header>
+    <div class="capa"></div>
+    
+    <input type="checkbox" id="btn-menu">
+    <div class="container-menu">
+        <div class="cont-menu">
+            <nav>
+                <a href="">Programacion Lineal</a>
+                <a href="">Redes</a>
+                <a href="">Manuales de Uso</a>
+            </nav>
+            <label for="btn-menu">✖️</label>
+        </div>
+    </div>
+    <div class="box">
+        <form method="post">
+            {% csrf_token %}
+            <table>
                 <tr>
-                    <th colspan="2" style="position: relative; left: -25%; color: #f4f4f4;"><h3>Optimizacion de tramos:</h3></th>
+                    <th colspan="2" style="position: relative; left: -25%; color: #f4f4f4;">
+                        <h3>Optimizacion de tramos:</h3>
+                    </th>
                 </tr>
-                <tr><th><br></th></tr>
                 <tr>
                     <th style="position: relative; left: 5%; color: #fefefe;">
                         Cantidad de kilometros a abarcar:
@@ -56,7 +116,6 @@
                         <input type="number" name="cantkm" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
                     </th>
                 </tr>
-                <tr><th><br></th></tr>
                 <tr>
                     <th style="position: relative; left: 1.5%; color: #fefefe;">
                         Kms minimos de tramo recto:
@@ -81,31 +140,32 @@
                         <input type="number" name="kmCP" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
                     </th>
                 </tr>
-                <tr><th><br></th></tr>
                 <tr>
                     <th></th>
                     <th colspan="2">
-                        <h3><label style="position: relative; left: -150%; color: #fefefe;">Resultados:</label></h3><br>
+                        <h3>
+                            <label style="position: relative; left: -150%; color: #fefefe;">Resultados:</label>
+                        </h3><br>
                         <label style="position: relative; left: -100%; color: #fefefe;">{{r1}} kms de curvas suaves</label><br>
                         <label style="position: relative; left: -100%; color: #fefefe;">{{r2}} kms de curvas pronunciadas</label><br>
                         <label style="position: relative; left: -100%; color: #fefefe;">{{r3}} kms de tramos rectos</label><br>
                     </th>
                 </tr>
-                <tr><th><br></th></tr>
-                </table>
-
-                <br>
-                
-                <table>
-                <tr><th colspan="3" style="position: relative; left: -23%; color: #f4f4f4;"><h3>Ingrese materiales a usar:</h3></th></tr>
-                <tr><th><br></th></tr>
-                <!-- Material    Distruibidor    precio    Cantidad -->
+            </table>
+        </form>
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th colspan="3" style="position: relative; left: -23%; color: #f4f4f4;">
+                        <h3>Ingrese materiales a usar:</h3>
+                    </th>
+                </tr>
                 <tr>
                     <th style="position: relative; left: 0%; color: #fefefe;">Material</th>
                     <th style="position: relative; left: 0%; color: #fefefe;">Distruibidor y precio</th>
                     <th style="position: relative; left: 0%; color: #fefefe;">Cantidad/km</th>
                 </tr>
-
                 <tr>
                     <th style="position: relative; left: 0%; color: #fefefe;">Piedra</th>
                     <th>
@@ -122,7 +182,6 @@
                     </th>
                     <th><input type="number" name="cantpiedra" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
                 </tr>
-                
                 <tr>
                     <th style="position: relative; left: 0%; color: #fefefe;">Arena</th>
                     <th>
@@ -138,7 +197,6 @@
                     </th>
                     <th><input type="number" name="cantarena" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
                 </tr>
-                
                 <tr>
                     <th style="position: relative; left: 0%; color: #fefefe;">Cemento</th>
                     <th>
@@ -154,7 +212,6 @@
                     </th>
                     <th><input type="number" name="cantcemento" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
                 </tr>
-                
                 <tr>
                     <th style="position: relative; left: 0%; color: #fefefe;">Concreto</th>
                     <th>
@@ -166,7 +223,6 @@
                     </th>
                     <th><input type="number" name="cantconcreto" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
                 </tr>
-                
                 <tr>
                     <th style="position: relative; left: 0%; color: #fefefe;">M. bituminoso</th>
                     <th>
@@ -178,13 +234,25 @@
                     </th>
                     <th><input type="number" name="cantbitumen" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
                 </tr>
-                <tr><th><br></th></tr>
-                <tr><th><br></th></tr>
                 <tr>
                     <th></th>
                     <th><input type="submit" value="Generar reporte" style="height:50px; width:200px;border-radius: 10px 10px 10px 10px; background-color:#251313;color: #fefefe;"></th>
                 </tr>
             </table>
+        </form>
     </div>
-    </body>
-</hmtml>
+    <script>
+    const menuItem = document.querySelector('.menu-item');
+    const popup = document.querySelector('.popup');
+
+    menuItem.addEventListener('mouseover', () => {
+        popup.style.display = 'block';
+    });
+
+    menuItem.addEventListener('mouseout', () => {
+        popup.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
