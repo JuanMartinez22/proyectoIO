@@ -449,7 +449,6 @@ def imprimirReporte(mpiedra,pupiedra,cpiedra,ptotal,marena,puarena,carena,atotal
     file.write(f"{cadena}\n")
     file.write("+---------------------------------------------+---------------+---------------+----------------+\n")
 
-
 def MyV(request):
     return render(request, "programacion_lineal/misionvision.html")
 
