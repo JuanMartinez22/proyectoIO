@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;00;800;900&display=swap');
+
+.box
+{
+    position: relative;
+    /* width: 1300px;
+    height: 750px;
+    bottom: 50px;
+    right: 100px; */
+    left: 28.5%;
+    top: 15vh;
+    width: 60%;
+    height: 70vh;
+    background: #1c1c1c;
+    border-radius: 50px 50px;
+    overflow: hidden;
+}

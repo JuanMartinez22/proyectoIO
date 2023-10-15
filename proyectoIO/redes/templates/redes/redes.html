@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Redes - Tu Empresa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.2px 20px;
+        }
+
+        header h3 {
+            margin: 0;
+        }
+        .menu-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .menu-link:hover {
+            text-decoration: underline;
+        }
+
+        .menu-link-inicio {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .open-menu-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .close-button {
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+        }
+
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        .menu-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+        }
+
+        .menu-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20%;
+            height: 100%;
+            background: #3498db;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        .close-button {
+            cursor: pointer;
+            padding: 10px;
+            font-size: 24px;
+        }
+
+        .menu-content a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .menu-content a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <label for="btn-menu" class="open-menu-button" id="menu-button">☰ OptiTech</label>
+        </div>
+        <nav id="menu-nav">
+            <div>
+                <a href="{% url 'Inicio' %}" title="Haz clic aquí para conocer nuestra misión y visión" class="menu-link-inicio">Inicio</a>
+            </div>
+            <div>
+                <a href="{% url 'Misionvision' %}" title="Haz clic aquí para conocer nuestra misión y visión" class="menu-link">Misión y Visión</a>
+            </div>
+            <div class="menu-item-sobre-nosotros">
+                <a href="{% url 'Sobrenosotros' %}" class="menu-link">Sobre Nosotros</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="menu-container">
+        <div class="menu-content">
+            <span class="close-button" onclick="toggleMenu()">✖️</span>
+            <a href="{% url 'ProgramacionLineal' %}">Programación Lineal</a>
+            <a href="{% url 'redes' %}">Redes</a>
+            <a href="{% url 'Manual' %}">Manuales de Uso</a>
+        </div>
+        </div>
+    <div class="form-container">
+
+    <form method="post">
+
+        <label>Construcción de drenaje menor:</label>
+        <input type="date" name="fi1">
+        <input type="date" name="ff1">
+        <br>
+        <label>Construcción de drenaje mayor:</label>
+        <input type="date" name="fi2">
+        <input type="date" name="ff2">
+        <br>
+        <label>Construcción de sub-base:</label>
+        <input type="date" name="fi3">
+        <input type="date" name="ff3">
+        <br>
+        <label>Construcción de base:</label>
+        <input type="date" name="fi4">
+        <input type="date" name="ff4">
+        <br>
+        <label>Construcción de la superficie de pavimento o rodadura</label>
+        <input type="date" name="fi5">
+        <input type="date" name="ff5">
+        <br>
+        <label>Construcción de estructuras de puentes:</label>
+        <input type="date" name="fi6">
+        <input type="date" name="ff6">
+        <br>
+        <label>Construcción de las señales y marcas de tráfico:</label>
+        <input type="date" name="fi7">
+        <input type="date" name="ff7">
+        <br>
+        <input type="submit" value="Generar reporte">
+    </form>
+
+    <script>
+        const menuButton = document.getElementById("menu-button");
+        const menuContainer = document.querySelector(".menu-container");
+    
+        menuButton.addEventListener("click", () => {
+            menuContainer.style.display = "block";
+        });
+    
+        function toggleMenu() {
+            menuContainer.style.display = "none";
+        }
+    </script>
+</body>
+</body>
+
+</html>
