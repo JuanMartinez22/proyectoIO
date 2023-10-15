@@ -1,191 +1,290 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Programacion Lineal</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/menulat.css' %}">
-    <link rel="stylesheet" href="{% static 'css/table.css' %}">
-    
-    <!DOCTYPE html>
-<html>
-<head>
+    <title>Programación Lineal</title>
     <style>
-        .menu-item {
-            position: relative;
-            padding: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
         }
 
-        .popup {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 10px;
-            z-index: 9999;
-            top: 100%; /* Posiciona el popup debajo del elemento del menú */
-            left: 0; /* Alinea con el borde izquierdo del menú */
+        header {
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
         }
 
-        .menu-item:hover .popup {
-            display: block;
+        header h3 {
+            margin: 0;
         }
 
-        .menu-item:hover .menu-link {
-            background-color: #ccc;
+        .menu-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
         }
 
         .menu-link:hover {
-            background-color: #ccc;
-        }
-
-        .menu {
-            display: flex;
-            justify-content: space-between;
+            text-decoration: underline;
         }
 
         .menu-link-inicio {
-            background-color: inherit;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
         }
 
-        .menu-item-sobre-nosotros {
-            margin-left: 20px;
+        nav {
+            display: flex;
+            align-items: center;
         }
 
-        .popup h2 {
-            font-size: 20px;
-            margin: 10px 0;
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
         }
 
-        .popup p {
-            font-size: 16px;
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .open-menu-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .close-button {
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            text-align: left;
+            padding: 8px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        .menu-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+        }
+
+        .menu-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20%;
+            height: 100%;
+            background: #3498db;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .close-button {
+            cursor: pointer;
+            padding: 10px;
+            font-size: 24px;
+        }
+
+        .menu-content a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .menu-content a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="btn-menu">
-                <label for="btn-menu">☰</label>
-            </div>
-            <div class="logo">
-                <h1>Cementera</h1>
-            </div>
-            <nav class="menu">
-                <div class="menu-item">
-                    <a href="programacionlineal.html" title="Haz clic aquí para conocer nuestra misión y visión" class="menu-link-inicio">Inicio</a>
-                </div>
-                <div class="menu-item">
-                    <a href="{% url 'Misionvision' %}" title="Haz clic aquí para conocer nuestra misión y visión" class="menu-link">Misión y Visión</a>
-                </div>
-                <div class="menu-item menu-item-sobre-nosotros">
-                    <a href="{% url 'Sobrenosotros' %}" class="menu-link">Sobre Nosotros</a>
-                </div>
-            </nav>
+    <header>
+        <div>
+            <label for="btn-menu" class="open-menu-button" id="menu-button">☰ OptiTech</label>
         </div>
+        <nav id="menu-nav">
+            <div>
+                <a href="programacionlineal.html" title="Haz clic aquí para conocer nuestra misión y visión" class="menu-link-inicio">Inicio</a>
+            </div>
+            <div>
+                <a href="{% url 'Misionvision' %}" title="Haz clic aquí para conocer nuestra misión y visión" class="menu-link">Misión y Visión</a>
+            </div>
+            <div class="menu-item-sobre-nosotros">
+                <a href="{% url 'Sobrenosotros' %}" class="menu-link">Sobre Nosotros</a>
+            </div>
+        </nav>
     </header>
-    <div class="capa"></div>
-    
-    <input type="checkbox" id="btn-menu">
-    <div class="container-menu">
-        <div class="cont-menu">
-            <nav>
-                <a href="">Programacion Lineal</a>
-                <a href="">Redes</a>
-                <a href="">Manuales de Uso</a>
-            </nav>
-            <label for="btn-menu">✖️</label>
-        </div>
+    <div class="menu-container">
+    <div class="menu-content">
+        <span class="close-button" onclick="toggleMenu()">✖️</span>
+        <a href="programacionlineal.html">Programación Lineal</a>
+        <a href="#">Redes</a>
+        <a href="#">Manuales de Uso</a>
     </div>
-    <div class="box">
+    </div>
+
+    <div class="form-container">
+
         <form method="post">
-            {% csrf_token %}
             <table>
                 <tr>
-                    <th colspan="2" style="position: relative; left: -25%; color: #f4f4f4;">
-                        <h3>Optimizacion de tramos:</h3>
-                    </th>
-                </tr>
-                <tr>
-                    <th style="position: relative; left: 5%; color: #fefefe;">
-                        Cantidad de kilometros a abarcar:
-                    </th>
-                    <th>
-                        <input type="number" name="cantkm" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
-                    </th>
-                </tr>
-                <tr>
-                    <th style="position: relative; left: 1.5%; color: #fefefe;">
-                        Kms minimos de tramo recto:
-                    </th>
-                    <th>
-                        <input type="number" name="kmTR" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
-                    </th>
-                </tr>
-                <tr>
-                    <th style="position: relative; left: 2%; color: #fefefe;">
-                        Kms maximos de curva suave:
-                    </th>
-                    <th>
-                        <input type="number" name="kmCS" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
-                    </th>
-                </tr>
-                <tr>
-                    <th style="position: relative; left: 7.5%; color: #fefefe;">
-                        Kms maximos de curva pronunciada:
-                    </th>
-                    <th>
-                        <input type="number" name="kmCP" style="width:100px;border-radius: 10px 10px 10px 10px;" required>
-                    </th>
-                </tr>
-                <tr>
-                    <th></th>
                     <th colspan="2">
-                        <h3>
-                            <label style="position: relative; left: -150%; color: #fefefe;">Resultados:</label>
-                        </h3><br>
-                        <label style="position: relative; left: -100%; color: #fefefe;">{{r1}} kms de curvas suaves</label><br>
-                        <label style="position: relative; left: -100%; color: #fefefe;">{{r2}} kms de curvas pronunciadas</label><br>
-                        <label style="position: relative; left: -100%; color: #fefefe;">{{r3}} kms de tramos rectos</label><br>
+                        <h3>Optimización de Tramos:</h3>
                     </th>
                 </tr>
+                <tr>
+                    <th>
+                        Cantidad de Kilómetros a Abarcar:
+                    </th>
+                    <th>
+                        <input type="number" name="cantkm" required>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Kms Mínimos de Tramo Recto:
+                    </th>
+                    <th>
+                        <input type="number" name="kmTR" required>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Kms Máximos de Curva Suave:
+                    </th>
+                    <th>
+                        <input type="number" name="kmCS" required>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Kms Máximos de Curva Pronunciada:
+                    </th>
+                    <th>
+                        <input type="number" name="kmCP" required>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <h3>Resultados:</h3>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Kms de Curvas Suaves</label>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Kms de Curvas Pronunciadas</label>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Kms de Tramos Rectos</label>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <label></label>
+                    </th>
+                </tr>
+                
             </table>
         </form>
         <form method="post">
-            {% csrf_token %}
             <table>
                 <tr>
-                    <th colspan="3" style="position: relative; left: -23%; color: #f4f4f4;">
-                        <h3>Ingrese materiales a usar:</h3>
+                    <th colspan="3">
+                        <h3>Ingrese Materiales a Usar:</h3>
                     </th>
                 </tr>
                 <tr>
-                    <th style="position: relative; left: 0%; color: #fefefe;">Material</th>
-                    <th style="position: relative; left: 0%; color: #fefefe;">Distruibidor y precio</th>
-                    <th style="position: relative; left: 0%; color: #fefefe;">Cantidad/km</th>
+                    <th>Material</th>
+                    <th>Distribuidor y Precio</th>
+                    <th>Cantidad/Km</th>
                 </tr>
                 <tr>
-                    <th style="position: relative; left: 0%; color: #fefefe;">Piedra</th>
+                    <th>Piedra</th>
                     <th>
-                        <select name="piedra" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                        <select name="piedra">
                             <option value="a1"></option>
-                            <option value="a2">Piedrin 1/2 comercial Guadalupe (Antigua)</option>
-                            <option value="a3">Piedrin 1/2 comercial Guadalupe (Chimaltenango)</option>
-                            <option value="a4">Piedrin 1/2 comercial Guadalupe (Escuintla)</option>
-                            <option value="a5">Piedrin negro</option>
-                            <option value="a6">Piedrin negro (Huehetenango)</option>
-                            <option value="a7">Piedrin negro 3/4 (Retalhuleu)</option>
-                            <option value="a8">Piedrin 1/2 comercio Sol</option>
+                            <option value="a2">Piedrin 1/2 Comercial Guadalupe (Antigua)</option>
+                            <option value="a3">Piedrin 1/2 Comercial Guadalupe (Chimaltenango)</option>
+                            <option value="a4">Piedrin 1/2 Comercial Guadalupe (Escuintla)</option>
+                            <option value="a5">Piedrin Negro</option>
+                            <option value="a6">Piedrin Negro (Huehuetenango)</option>
+                            <option value="a7">Piedrin Negro 3/4 (Retalhuleu)</option>
+                            <option value="a8">Piedrin 1/2 Comercio Sol</option>
                         </select>
                     </th>
-                    <th><input type="number" name="cantpiedra" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                    <th><input type="number" name="cantpiedra"></th>
                 </tr>
                 <tr>
-                    <th style="position: relative; left: 0%; color: #fefefe;">Arena</th>
+                    <th>Arena</th>
                     <th>
-                        <select name="arena" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                        <select name="arena">
                             <option value="b1"></option>
                             <option value="b2">Arena Rio corriente</option>
                             <option value="b3">Arena Rio Guadalupe(Antigua)</option>
@@ -195,12 +294,12 @@
                             <option value="b7">Arena Rio triturada</option>
                         </select>
                     </th>
-                    <th><input type="number" name="cantarena" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                    <th><input type="number" name="cantarena"></th>
                 </tr>
                 <tr>
-                    <th style="position: relative; left: 0%; color: #fefefe;">Cemento</th>
+                    <th>Cemento</th>
                     <th>
-                        <select name="cemento" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                        <select name="cemento">
                             <option value="c1"></option>
                             <option value="c2">Cemento Cantera progreso 42.5KG</option>
                             <option value="c3">Cemento UGC 42.5KG</option>
@@ -210,49 +309,48 @@
                             <option value="c7">Cemento asfáltico Black Jack</option>
                         </select>
                     </th>
-                    <th><input type="number" name="cantcemento" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                    <th><input type="number" name="cantcemento"></th>
                 </tr>
                 <tr>
-                    <th style="position: relative; left: 0%; color: #fefefe;">Concreto</th>
+                    <th>Concreto</th>
                     <th>
-                        <select name="concreto" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                        <select name="concreto">
                             <option value="d1"></option>
                             <option value="d2">Concreto 3001 PSI 3/8 50KG</option>
                             <option value="d3">Concreto 3002 PSI 1/2 50KG</option>
                         </select>
                     </th>
-                    <th><input type="number" name="cantconcreto" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                    <th><input type="number" name="cantconcreto"></th>
                 </tr>
                 <tr>
-                    <th style="position: relative; left: 0%; color: #fefefe;">M. bituminoso</th>
+                    <th>M. bituminoso</th>
                     <th>
-                        <select name="bituminoso" style="width:300px;border-radius: 10px 10px 10px 10px;">
+                        <select name="bituminoso">
                             <option value="e1"></option>
                             <option value="e2">AC-2.5</option>
                             <option value="e3">AC-5</option>
                         </select>
                     </th>
-                    <th><input type="number" name="cantbitumen" style="width:100px;border-radius: 10px 10px 10px 10px;"></th>
+                    <th><input type="number" name="cantbitumen"></th>
                 </tr>
                 <tr>
                     <th></th>
-                    <th><input type="submit" value="Generar reporte" style="height:50px; width:200px;border-radius: 10px 10px 10px 10px; background-color:#251313;color: #fefefe;"></th>
+                    <th><input type="submit" value="Generar reporte"></th>
                 </tr>
             </table>
         </form>
     </div>
     <script>
-    const menuItem = document.querySelector('.menu-item');
-    const popup = document.querySelector('.popup');
+    const menuButton = document.getElementById("menu-button");
+    const menuContainer = document.querySelector(".menu-container");
 
-    menuItem.addEventListener('mouseover', () => {
-        popup.style.display = 'block';
+    menuButton.addEventListener("click", () => {
+        menuContainer.style.display = "block";
     });
 
-    menuItem.addEventListener('mouseout', () => {
-        popup.style.display = 'none';
-    });
+    function toggleMenu() {
+        menuContainer.style.display = "none";
+    }
 </script>
-
 </body>
 </html>

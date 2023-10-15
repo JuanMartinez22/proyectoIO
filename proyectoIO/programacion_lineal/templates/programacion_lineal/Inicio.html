@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación Lineal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        .menu-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 16px; 
+        }
+
+        .menu-link:hover {
+            text-decoration: underline;
+        }
+
+        .menu-link-inicio {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px; 
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .open-menu-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .close-button {
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+            margin: 20px auto;
+            max-width: 800px; 
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2978a0;
+        }
+
+        .menu-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .menu-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20%;
+            height: 100%;
+            background: #3498db;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .close-button {
+            cursor: pointer;
+            padding: 10px;
+            font-size: 24px;
+        }
+
+        .menu-content a {
+            color: white;
+            text-decoration: none;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .menu-content a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            margin: 20px 0;
+        }
+
+        .container p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <label for="btn-menu" class="open-menu-button" id="menu-button">☰ OptiTech</label>
+        </div>
+        <nav id="menu-nav">
+            <div>
+                <a href="{% url 'Misionvision' %}" title="Haz clic aquí para conocer nuestra misión y visión" class="menu-link">Misión y Visión</a>
+            </div>
+            <div class="menu-item-sobre-nosotros">
+                <a href="{% url 'Sobrenosotros' %}" class="menu-link">Sobre Nosotros</a>
+            </div>
+        </nav>
+    </header>
+    <div class="menu-container">
+        <div class="menu-content">
+            <span class="close-button" onclick="toggleMenu()">✖️</span>
+            <a href="programacionlineal.html">Programación Lineal</a>
+            <a href="#">Redes</a>
+            <a href="#">Manuales de Uso</a>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <div class="container">
+            <img src="C:\Users\Rodrigo Gonzalez\Desktop\Proyecto IO\proyectoIO-007\proyectoIO-007\proyectoIO\Logos\logo3.jpg" alt="Tu Imagen">
+            <p>¡Bienvenido a nuestro sitio web! Somos una empresa dedicada a la innovación tecnológica en la industria, revolucionando e implementando un sistema estadístico muy completo para facilitar la industria.</p>
+        </div>
+    </div>
+
+    <script>
+        const menuButton = document.getElementById("menu-button");
+        const menuContainer = document.querySelector(".menu-container");
+    
+        menuButton.addEventListener("click", () => {
+            menuContainer.style.display = "block";
+        });
+    
+        function toggleMenu() {
+            menuContainer.style.display = "none";
+        }
+    </script>
+</body>
+</html>
